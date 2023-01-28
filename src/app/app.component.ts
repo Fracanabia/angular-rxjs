@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Routes } from '@angular/router';
+import { routes } from './app-routing.module';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-rxjs';
+  routes: Routes = routes.filter(route => route.path)
+
+
 }
