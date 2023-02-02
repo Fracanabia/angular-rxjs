@@ -1,13 +1,16 @@
 <div class="flex w-screen h-screen text-white">
   <div class="w-48 bg-zinc-900">
-    <ul class="hover:bg-zinc-700 hover:underline" *ngFor=" let route of routes" [routerLink]="route.path"
+    <ul
+      class="hover:bg-zinc-700 hover:underline"
+      *ngFor="let route of routes"
+      [routerLink]="route.path"
       routerLinkActive="bg-zinc-800">
-      <li class="p-2">
-        {{route.path}}
+      <li class="p-2 cursor-pointer">
+        {{ route.path }}
       </li>
     </ul>
   </div>
-  <div class="flex-1 bg-zinc-800 p-4">
+  <div class="flex-1 bg-zinc-800 p-4 overflow-hidden h-full">
     <router-outlet></router-outlet>
   </div>
 </div>
