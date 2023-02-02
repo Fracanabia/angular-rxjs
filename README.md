@@ -2,11 +2,11 @@
 
 ## Angular CLI
 
-### ***15.1.3***
+### **_15.1.3_**
 
 ## Node
 
-### ***18.13.0***
+### **_18.13.0_**
 
 ## Packages
 
@@ -26,18 +26,27 @@ npx tailwindcss init
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 ```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+```
+
+### Prettier
+
+```bash
+npm install prettier -D
+npx prettier -write .
+npm install prettier-eslint eslint-config-prettier eslint-plugin-prettier -D
+# Create Files
+.prettierignore
+.prettierrc.json
 ```
