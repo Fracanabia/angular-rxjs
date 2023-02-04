@@ -18,7 +18,7 @@ export class SubjectComponent implements OnInit {
     const subject = new Subject<number>();
 
     subject.subscribe({
-      next: res => this.logs.push(`next Subject: ${res}`),
+      next: res => this.logs.push(`next Subject: ${JSON.stringify(res)}`),
     });
 
     subject.next(10);
@@ -29,7 +29,8 @@ export class SubjectComponent implements OnInit {
     const behaviorSubject = new BehaviorSubject<number>(0);
 
     behaviorSubject.subscribe({
-      next: res => this.logs.push(`next BehaviorSubject: ${res}`),
+      next: res =>
+        this.logs.push(`next BehaviorSubject: ${JSON.stringify(res)}`),
     });
 
     behaviorSubject.next(10);
