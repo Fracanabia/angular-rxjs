@@ -82,6 +82,13 @@ export const routes: Routes = [
             './components/operations-creation/throw-error/throw-error.module'
           ).then(m => m.ThrowErrorModule),
       },
+      {
+        path: 'ajax',
+        loadChildren: () =>
+          import('./components/operations-creation/ajax/ajax.module').then(
+            m => m.AjaxModule
+          ),
+      },
     ],
   },
 ];
