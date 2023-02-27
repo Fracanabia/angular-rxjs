@@ -91,6 +91,32 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'operation-creation-join',
+    children: [
+      {
+        path: 'fork-join',
+        loadChildren: () =>
+          import(
+            './components/operations-creation-join/fork-join/fork-join.module'
+          ).then(m => m.ForkJoinModule),
+      },
+      {
+        path: 'zip',
+        loadChildren: () =>
+          import('./components/operations-creation-join/zip/zip.module').then(
+            m => m.ZipModule
+          ),
+      },
+      {
+        path: 'merge-concat',
+        loadChildren: () =>
+          import(
+            './components/operations-creation-join/merge-concat/merge-concat.module'
+          ).then(m => m.MergeConcatModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({

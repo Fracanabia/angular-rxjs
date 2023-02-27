@@ -15,14 +15,14 @@ export class AjaxComponent implements OnInit {
   private initOperatorAjax(): void {
     const http$ = ajax.getJSON('http://localhost:3000/users').pipe(
       catchError(error => {
-        console.error(`Error: `, error);
+        console.error(`error: `, error);
         return of(error);
       })
     );
 
     http$.subscribe({
       next: res => {
-        console.log(`res: `, res);
+        console.log(`ajax: `, res);
       },
     });
   }

@@ -16,13 +16,13 @@ export class ThrowErrorComponent implements OnInit {
 
     error.subscribe({
       next: next => {
-        console.log(`Throw Next: `, next);
+        console.log(`throw Next: `, next);
       },
       error: error => {
-        console.error(`Throw Error: `, error);
+        console.error(`throw Error: `, error);
       },
       complete: () => {
-        console.log(`Throw Complete`);
+        console.log(`throw Complete`);
       },
     });
   }

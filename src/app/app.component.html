@@ -1,11 +1,11 @@
 <div class="flex w-screen h-screen text-white">
-  <div class="w-48 bg-zinc-900">
+  <div class="w-48 bg-zinc-900 overflow-auto">
     <div *ngFor="let route of routes">
       <div
-        class="p-2 cursor-pointer hover:bg-zinc-700"
+        class="p-2 cursor-pointer hover:bg-zinc-700 sticky top-0 bg-zinc-900 overflow-ellipsis whitespace-nowrap overflow-hidden"
         [routerLink]="route.path"
         routerLinkActive="bg-zinc-800">
-        <span class="capitalize">
+        <span class="uppercase text-sm">
           {{ route.path }}
         </span>
       </div>
@@ -14,9 +14,7 @@
         *ngFor="let children of route.children"
         [routerLink]="[route.path, children.path]"
         routerLinkActive="bg-zinc-800">
-        <span class="ml-2 capitalize text-xs">
-          {{ children.path }}
-        </span>
+        <span class="ml-2 capitalize text-xs"> {{ children.path }} </span>
       </div>
     </div>
   </div>

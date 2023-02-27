@@ -30,7 +30,7 @@ export class ObservableComponent implements OnInit {
         console.log(`error Observer: `, error);
       },
       complete: () => {
-        console.log(`complete: completou`);
+        console.log(`complete`);
       },
     };
 
