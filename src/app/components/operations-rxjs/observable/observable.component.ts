@@ -7,7 +7,7 @@ import { interval, Observable } from 'rxjs';
   styleUrls: ['./observable.component.scss'],
 })
 export class ObservableComponent implements OnInit {
-  public logs: string[] = [];
+  public logs: unknown[] = [];
 
   ngOnInit(): void {
     this.initObservable();
@@ -23,14 +23,14 @@ export class ObservableComponent implements OnInit {
     });
 
     const observer = {
-      next: (res: any) => {
-        this.logs.push(`next: ${JSON.stringify(res)}`);
+      next: (res: unknown) => {
+        console.log(`next Observer: `, res);
       },
-      error: (error: any) => {
-        this.logs.push(`error: ${JSON.stringify(error)}`);
+      error: (error: unknown) => {
+        console.log(`error Observer: `, error);
       },
       complete: () => {
-        this.logs.push(`complete: completou`);
+        console.log(`complete: completou`);
       },
     };
 
@@ -38,7 +38,7 @@ export class ObservableComponent implements OnInit {
 
     const subscription = observable.subscribe(observer);
     const subscriptionWithIntervalRxjs = intervalRxjs.subscribe({
-      next: res => this.logs.push(JSON.stringify(res)),
+      next: res => console.log(`subscriptionWithIntervalRxjs: `, res),
     });
 
     subscription.unsubscribe();

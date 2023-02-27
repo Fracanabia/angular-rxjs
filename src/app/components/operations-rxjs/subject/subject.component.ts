@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
   styleUrls: ['./subject.component.scss'],
 })
 export class SubjectComponent implements OnInit {
-  public logs: string[] = [];
+  public logs: unknown[] = [];
 
   ngOnInit(): void {
     this.initSubject();
@@ -18,7 +18,7 @@ export class SubjectComponent implements OnInit {
     const subject = new Subject<number>();
 
     subject.subscribe({
-      next: res => this.logs.push(`next Subject: ${JSON.stringify(res)}`),
+      next: res => console.log(`next Subject: `, res),
     });
 
     subject.next(10);
@@ -29,8 +29,7 @@ export class SubjectComponent implements OnInit {
     const behaviorSubject = new BehaviorSubject<number>(0);
 
     behaviorSubject.subscribe({
-      next: res =>
-        this.logs.push(`next BehaviorSubject: ${JSON.stringify(res)}`),
+      next: res => console.log(`next BehaviorSubject: `, res),
     });
 
     behaviorSubject.next(10);

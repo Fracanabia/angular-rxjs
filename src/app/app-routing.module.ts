@@ -34,7 +34,55 @@ export const routes: Routes = [
   },
   {
     path: 'operations-creation',
-    children: [],
+    redirectTo: 'operations-creation/from',
+    pathMatch: 'full',
+  },
+  {
+    path: 'operations-creation',
+    children: [
+      {
+        path: 'from',
+        loadChildren: () =>
+          import('./components/operations-creation/from/from.module').then(
+            m => m.FromModule
+          ),
+      },
+      {
+        path: 'of',
+        loadChildren: () =>
+          import('./components/operations-creation/of/of.module').then(
+            m => m.OfModule
+          ),
+      },
+      {
+        path: 'from-event',
+        loadChildren: () =>
+          import(
+            './components/operations-creation/from-event/from-event.module'
+          ).then(m => m.FromEventModule),
+      },
+      {
+        path: 'interval',
+        loadChildren: () =>
+          import(
+            './components/operations-creation/interval/interval.module'
+          ).then(m => m.IntervalModule),
+      },
+      {
+        path: 'timer',
+        loadChildren: () =>
+          import('./components/operations-creation/timer/timer.module').then(
+            m => m.TimerModule
+          ),
+      },
+      {
+        path: 'throw-error',
+        loadChildren: () =>
+          import(
+            './components/operations-creation/throw-error/throw-error.module'
+          ).then(m => m.ThrowErrorModule),
+      },
+    ],
   },
 ];
 
