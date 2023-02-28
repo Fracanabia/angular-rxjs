@@ -2,20 +2,30 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'operations-rxjs/rxjs', pathMatch: 'full' },
+  { path: '', redirectTo: 'operations-rxjs/observable', pathMatch: 'full' },
   {
     path: 'operations-rxjs',
-    redirectTo: 'operations-rxjs/rxjs',
+    redirectTo: 'operations-rxjs/observable',
+    pathMatch: 'full',
+  },
+  {
+    path: 'operations-creation',
+    redirectTo: 'operations-creation/from',
+    pathMatch: 'full',
+  },
+  {
+    path: 'operations-creation-join',
+    redirectTo: 'operations-creation-join/fork-join',
+    pathMatch: 'full',
+  },
+  {
+    path: 'operations-transformation',
+    redirectTo: 'operations-transformation/map',
     pathMatch: 'full',
   },
   {
     path: 'operations-rxjs',
     children: [
-      {
-        path: 'rxjs',
-        loadChildren: () =>
-          import('./components/rxjs/rxjs.module').then(m => m.RxjsModule),
-      },
       {
         path: 'observable',
         loadChildren: () =>
@@ -31,11 +41,6 @@ export const routes: Routes = [
           ),
       },
     ],
-  },
-  {
-    path: 'operations-creation',
-    redirectTo: 'operations-creation/from',
-    pathMatch: 'full',
   },
   {
     path: 'operations-creation',
@@ -92,7 +97,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'operation-creation-join',
+    path: 'operations-creation-join',
     children: [
       {
         path: 'fork-join',
@@ -114,6 +119,18 @@ export const routes: Routes = [
           import(
             './components/operations-creation-join/merge-concat/merge-concat.module'
           ).then(m => m.MergeConcatModule),
+      },
+    ],
+  },
+  {
+    path: 'operations-transformation',
+    children: [
+      {
+        path: 'map',
+        loadChildren: () =>
+          import('./components/operations-transformation/map/map.module').then(
+            m => m.MapModule
+          ),
       },
     ],
   },

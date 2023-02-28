@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concat, forkJoin, interval, merge, Observable, zip } from 'rxjs';
+import { concat, forkJoin, interval, map, merge, Observable, zip } from 'rxjs';
+
+type User = { id: number; name: string; email: string };
 
 @Injectable({
   providedIn: 'root',
@@ -9,11 +11,11 @@ export class ApiService {
   constructor(private readonly _httpClient: HttpClient) {}
 
   public getUsersForkJoin(): Observable<{
-    apiLocal: object;
+    apiLocal: User[];
     apiExternal: object;
   }> {
     const http$ = forkJoin({
-      apiLocal: this._httpClient.get('http://localhost:3000/users'),
+      apiLocal: this._httpClient.get<User[]>('http://localhost:3000/users'),
       apiExternal: this._httpClient.get(
         'https://jsonplaceholder.typicode.com/todos/1'
       ),
@@ -22,8 +24,10 @@ export class ApiService {
     return http$;
   }
 
-  public getUsersZip(): Observable<[object, object]> {
-    const apiLocal$ = this._httpClient.get('http://localhost:3000/users');
+  public getUsersZip(): Observable<[User[], object]> {
+    const apiLocal$ = this._httpClient.get<User[]>(
+      'http://localhost:3000/users'
+    );
     const apiExternal$ = this._httpClient.get(
       'https://jsonplaceholder.typicode.com/todos/1'
     );
@@ -33,9 +37,11 @@ export class ApiService {
     return http$;
   }
 
-  public getUsersMerge(): Observable<number | object> {
+  public getUsersMerge(): Observable<number | User[] | object> {
     const interval$ = interval(1000);
-    const apiLocal$ = this._httpClient.get('http://localhost:3000/users');
+    const apiLocal$ = this._httpClient.get<User[]>(
+      'http://localhost:3000/users'
+    );
     const apiExternal$ = this._httpClient.get(
       'https://jsonplaceholder.typicode.com/todos/1'
     );
@@ -45,9 +51,11 @@ export class ApiService {
     return http$;
   }
 
-  public getUsersConcat(): Observable<number | object> {
+  public getUsersConcat(): Observable<number | User[] | object> {
     const interval$ = interval(1000);
-    const apiLocal$ = this._httpClient.get('http://localhost:3000/users');
+    const apiLocal$ = this._httpClient.get<User[]>(
+      'http://localhost:3000/users'
+    );
     const apiExternal$ = this._httpClient.get(
       'https://jsonplaceholder.typicode.com/todos/1'
     );
@@ -55,5 +63,11 @@ export class ApiService {
     const http$ = concat(interval$, apiLocal$, apiExternal$);
 
     return http$;
+  }
+
+  public getUserMap(): Observable<string[]> {
+    return this._httpClient
+      .get<User[]>('http://localhost:3000/users')
+      .pipe(map(users => users.map(user => user.name)));
   }
 }
