@@ -132,6 +132,13 @@ export const routes: Routes = [
             m => m.MapModule
           ),
       },
+      {
+        path: 'map-to',
+        loadChildren: () =>
+          import(
+            './components/operations-transformation/map-to/map-to.module'
+          ).then(m => m.MapToModule),
+      },
     ],
   },
 ];
