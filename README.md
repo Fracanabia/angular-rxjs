@@ -50,3 +50,23 @@ npm install prettier-eslint eslint-config-prettier eslint-plugin-prettier -D
 .prettierignore
 .prettierrc.json
 ```
+
+### Json-server
+
+```bash
+npm i -g json-server
+# Create files
+db/db.json   
+```
+
+### db.json
+
+```json
+{
+  "users": [
+    { "id": 1, "name": "Wesley", "email": "wesley@gmail.com" },
+    { "id": 2, "name": "Ana Paula", "email": "anapaula@gmail.com" },
+    { "id": 3, "name": "Amanda", "email": "amanda@gmail.com" }
+  ]
+}
+```
