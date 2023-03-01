@@ -1,7 +1,25 @@
 {
   "users": [
-    { "id": 1, "name": "Wesley", "email": "wesley@gmail.com" },
-    { "id": 2, "name": "Ana Paula", "email": "anapaula@gmail.com" },
-    { "id": 3, "name": "Amanda", "email": "amanda@gmail.com" }
-  ]
+    {
+      "id": 1,
+      "name": "Wesley",
+      "email": "wesley@gmail.com",
+      "cpf": "00000000000"
+    },
+    {
+      "id": 2,
+      "name": "Ana Paula",
+      "email": "anapaula@gmail.com",
+      "cpf": "11111111111"
+    },
+    {
+      "id": 3,
+      "name": "Amanda",
+      "email": "amanda@gmail.com",
+      "cpf": "22222222222"
+    }
+  ],
+  "user": {
+    "cpf": "00000000000"
+  }
 }

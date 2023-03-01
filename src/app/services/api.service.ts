@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { concat, forkJoin, interval, map, merge, Observable, zip } from 'rxjs';
 
-type User = { id: number; name: string; email: string };
+type User = { id: number; name: string; email: string; cpf: string };
+
+type UserCpf = { cpf: string };
 
 @Injectable({
   providedIn: 'root',
@@ -69,5 +71,15 @@ export class ApiService {
     return this._httpClient
       .get<User[]>('http://localhost:3000/users')
       .pipe(map(users => users.map(user => user.name)));
+  }
+
+  public getUserSwitchMap(): Observable<UserCpf> {
+    return this._httpClient.get<UserCpf>('http://localhost:3000/user');
+  }
+
+  public getUserSwitchMapSearch(cpf: string): Observable<User[]> {
+    return this._httpClient.get<User[]>(
+      `http://localhost:3000/users?cpf=${cpf}`
+    );
   }
 }

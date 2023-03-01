@@ -139,6 +139,20 @@ export const routes: Routes = [
             './components/operations-transformation/map-to/map-to.module'
           ).then(m => m.MapToModule),
       },
+      {
+        path: 'switch-map',
+        loadChildren: () =>
+          import(
+            './components/operations-transformation/switch-map/switch-map.module'
+          ).then(m => m.SwitchMapModule),
+      },
+      {
+        path: 'pluck',
+        loadChildren: () =>
+          import(
+            './components/operations-transformation/pluck/pluck.module'
+          ).then(m => m.PluckModule),
+      },
     ],
   },
 ];
