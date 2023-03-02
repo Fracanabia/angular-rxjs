@@ -198,6 +198,13 @@ export const routes: Routes = [
             './components/operations-filter/take-while/take-while.module'
           ).then(m => m.TakeWhileModule),
       },
+      {
+        path: 'skip',
+        loadChildren: () =>
+          import('./components/operations-filter/skip/skip.module').then(
+            m => m.SkipModule
+          ),
+      },
     ],
   },
 ];
