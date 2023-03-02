@@ -8,9 +8,8 @@ describe('ToArrayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ToArrayComponent ]
-    })
-    .compileComponents();
+      declarations: [ToArrayComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ToArrayComponent);
     component = fixture.componentInstance;

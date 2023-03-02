@@ -6,6 +6,6 @@ const routes: Routes = [{ path: '', component: ToArrayComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class ToArrayRoutingModule { }
+export class ToArrayRoutingModule {}
