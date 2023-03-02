@@ -91,9 +91,16 @@ export class ApiService {
       `http://localhost:3000/users?cpf=${cpf}`
     );
   }
+
   public getUserToArray(): Observable<UserCpf[]> {
     return this._httpClient
       .get<UserCpf>(`http://localhost:3000/user`)
       .pipe(toArray());
+  }
+
+  public getUserDebounceTime(name: string): Observable<User[]> {
+    return this._httpClient.get<User[]>(
+      `http://localhost:3000/users?name=${name}`
+    );
   }
 }

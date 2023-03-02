@@ -205,6 +205,13 @@ export const routes: Routes = [
             m => m.SkipModule
           ),
       },
+      {
+        path: 'debounce-time',
+        loadChildren: () =>
+          import(
+            './components/operations-filter/debounce-time/debounce-time.module'
+          ).then(m => m.DebounceTimeModule),
+      },
     ],
   },
 ];
