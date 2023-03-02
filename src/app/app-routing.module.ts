@@ -14,8 +14,8 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'operations-join',
-    redirectTo: 'operations-join/fork-join',
+    path: 'operations-creation-join',
+    redirectTo: 'operations-creation-join/fork-join',
     pathMatch: 'full',
   },
   {
@@ -102,19 +102,19 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'operations-join',
+    path: 'operations-creation-join',
     children: [
       {
         path: 'fork-join',
         loadChildren: () =>
           import(
-            './components/operations-join/fork-join/fork-join.module'
+            './components/operations-creation-join/fork-join/fork-join.module'
           ).then(m => m.ForkJoinModule),
       },
       {
         path: 'zip',
         loadChildren: () =>
-          import('./components/operations-join/zip/zip.module').then(
+          import('./components/operations-creation-join/zip/zip.module').then(
             m => m.ZipModule
           ),
       },
@@ -122,7 +122,7 @@ export const routes: Routes = [
         path: 'merge-concat',
         loadChildren: () =>
           import(
-            './components/operations-join/merge-concat/merge-concat.module'
+            './components/operations-creation-join/merge-concat/merge-concat.module'
           ).then(m => m.MergeConcatModule),
       },
     ],
