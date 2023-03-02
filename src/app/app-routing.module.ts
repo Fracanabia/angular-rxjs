@@ -24,6 +24,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'operations-filter',
+    redirectTo: 'operations-filter/filter',
+    pathMatch: 'full',
+  },
+  {
     path: 'operations-rxjs',
     children: [
       {
@@ -159,6 +164,18 @@ export const routes: Routes = [
           import(
             './components/operations-transformation/to-array/to-array.module'
           ).then(m => m.ToArrayModule),
+      },
+    ],
+  },
+  {
+    path: 'operations-filter',
+    children: [
+      {
+        path: 'filter',
+        loadChildren: () =>
+          import('./components/operations-filter/filter/filter.module').then(
+            m => m.FilterModule
+          ),
       },
     ],
   },
