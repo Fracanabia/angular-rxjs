@@ -1,6 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { concat, forkJoin, interval, map, merge, Observable, zip } from 'rxjs';
+import {
+  concat,
+  forkJoin,
+  interval,
+  map,
+  merge,
+  Observable,
+  toArray,
+  zip,
+} from 'rxjs';
 
 type User = { id: number; name: string; email: string; cpf: string };
 
@@ -81,5 +90,10 @@ export class ApiService {
     return this._httpClient.get<User[]>(
       `http://localhost:3000/users?cpf=${cpf}`
     );
+  }
+  public getUserToArray(): Observable<UserCpf[]> {
+    return this._httpClient
+      .get<UserCpf>(`http://localhost:3000/user`)
+      .pipe(toArray());
   }
 }

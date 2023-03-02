@@ -153,6 +153,13 @@ export const routes: Routes = [
             './components/operations-transformation/pluck/pluck.module'
           ).then(m => m.PluckModule),
       },
+      {
+        path: 'to-array',
+        loadChildren: () =>
+          import(
+            './components/operations-transformation/to-array/to-array.module'
+          ).then(m => m.ToArrayModule),
+      },
     ],
   },
 ];
