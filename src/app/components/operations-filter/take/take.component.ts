@@ -1,14 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { from, interval, map, Observable, Subject, take } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { from, interval, map, Observable, take } from 'rxjs';
 
 @Component({
   selector: 'app-take',
   templateUrl: './take.component.html',
   styleUrls: ['./take.component.scss'],
 })
-export class TakeComponent implements OnInit, OnDestroy {
-  private _destroyed$ = new Subject();
-
+export class TakeComponent implements OnInit {
   ngOnInit(): void {
     this.initOperatorTake();
   }
@@ -40,10 +38,5 @@ export class TakeComponent implements OnInit, OnDestroy {
         console.log(`first5Values: `, res);
       },
     });
-  }
-
-  ngOnDestroy(): void {
-    this._destroyed$.next(null);
-    this._destroyed$.unsubscribe();
   }
 }
