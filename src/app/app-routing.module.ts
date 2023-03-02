@@ -191,6 +191,13 @@ export const routes: Routes = [
             './components/operations-filter/take-until/take-until.module'
           ).then(m => m.TakeUntilModule),
       },
+      {
+        path: 'take-while',
+        loadChildren: () =>
+          import(
+            './components/operations-filter/take-while/take-while.module'
+          ).then(m => m.TakeWhileModule),
+      },
     ],
   },
 ];
