@@ -7,6 +7,8 @@ import {
   map,
   merge,
   Observable,
+  share,
+  shareReplay,
   toArray,
   zip,
 } from 'rxjs';
@@ -102,5 +104,17 @@ export class ApiService {
     return this._httpClient.get<User[]>(
       `http://localhost:3000/users?name=${name}`
     );
+  }
+
+  public getUserShareReplay(): Observable<User[]> {
+    return this._httpClient
+      .get<User[]>(`http://localhost:3000/users`)
+      .pipe(shareReplay(1));
+  }
+
+  public getUserShare(): Observable<User[]> {
+    return this._httpClient
+      .get<User[]>(`http://localhost:3000/users`)
+      .pipe(share());
   }
 }

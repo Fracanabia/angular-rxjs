@@ -34,6 +34,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'operations-multicasting',
+    redirectTo: 'operations-multicasting/share-replay',
+    pathMatch: 'full',
+  },
+  {
     path: 'operations-rxjs',
     children: [
       {
@@ -249,6 +254,25 @@ export const routes: Routes = [
           import(
             './components/operations-join/with-latest-from/with-latest-from.module'
           ).then(m => m.WithLatestFromModule),
+      },
+    ],
+  },
+  {
+    path: 'operations-multicasting',
+    children: [
+      {
+        path: 'share-replay',
+        loadChildren: () =>
+          import(
+            './components/operation-multicasting/share-replay/share-replay.module'
+          ).then(m => m.ShareReplayModule),
+      },
+      {
+        path: 'share',
+        loadChildren: () =>
+          import('./components/operation-multicasting/share/share.module').then(
+            m => m.ShareModule
+          ),
       },
     ],
   },
