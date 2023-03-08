@@ -29,6 +29,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'operations-join',
+    redirectTo: 'operations-join/switch-all',
+    pathMatch: 'full',
+  },
+  {
     path: 'operations-rxjs',
     children: [
       {
@@ -211,6 +216,18 @@ export const routes: Routes = [
           import(
             './components/operations-filter/debounce-time/debounce-time.module'
           ).then(m => m.DebounceTimeModule),
+      },
+    ],
+  },
+  {
+    path: 'operations-join',
+    children: [
+      {
+        path: 'switch-all',
+        loadChildren: () =>
+          import(
+            './components/operations-join/switch-all/switch-all.module'
+          ).then(m => m.SwitchAllModule),
       },
     ],
   },
