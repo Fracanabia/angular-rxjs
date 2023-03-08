@@ -229,6 +229,13 @@ export const routes: Routes = [
             './components/operations-join/switch-all/switch-all.module'
           ).then(m => m.SwitchAllModule),
       },
+      {
+        path: 'start-with',
+        loadChildren: () =>
+          import(
+            './components/operations-join/start-with/start-with.module'
+          ).then(m => m.StartWithModule),
+      },
     ],
   },
 ];
