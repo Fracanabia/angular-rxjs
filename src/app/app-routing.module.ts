@@ -236,6 +236,20 @@ export const routes: Routes = [
             './components/operations-join/start-with/start-with.module'
           ).then(m => m.StartWithModule),
       },
+      {
+        path: 'combine-latest',
+        loadChildren: () =>
+          import(
+            './components/operations-join/combine-latest/combine-latest.module'
+          ).then(m => m.CombineLatestModule),
+      },
+      {
+        path: 'with-latest-from',
+        loadChildren: () =>
+          import(
+            './components/operations-join/with-latest-from/with-latest-from.module'
+          ).then(m => m.WithLatestFromModule),
+      },
     ],
   },
 ];
