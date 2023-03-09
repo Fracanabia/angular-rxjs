@@ -1,14 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
+  catchError,
   concat,
   forkJoin,
   interval,
   map,
   merge,
   Observable,
+  of,
+  retry,
   share,
   shareReplay,
+  throwError,
   toArray,
   zip,
 } from 'rxjs';
@@ -116,5 +120,42 @@ export class ApiService {
     return this._httpClient
       .get<User[]>(`http://localhost:3000/users`)
       .pipe(share());
+  }
+
+  public getUserCatchError(): Observable<string | User[]> {
+    return this._httpClient
+      .get<User[]>(`http://localhost:3000/usersERROR`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 0) {
+            return of('Ocorreu um erro na apliacação, tente mais tarde!');
+          } else if (error.status === 404) {
+            console.log(error.message);
+          } else {
+            return of('Ocorreu um erro no servidor, tente mais tarde');
+          }
+
+          return throwError(() => error);
+        })
+      );
+  }
+
+  public getUserRetry(): Observable<string | User[]> {
+    return this._httpClient
+      .get<User[]>(`http://localhost:3000/usersERROR`)
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          if (error.status === 0) {
+            return of('Ocorreu um erro na apliacação, tente mais tarde!');
+          } else if (error.status === 404) {
+            console.log(error.message);
+          } else {
+            return of('Ocorreu um erro no servidor, tente mais tarde');
+          }
+
+          return throwError(() => error);
+        }),
+        retry(2)
+      );
   }
 }

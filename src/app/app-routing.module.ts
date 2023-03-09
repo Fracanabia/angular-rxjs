@@ -39,6 +39,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'operations-error',
+    redirectTo: 'operations-error/catch-error',
+    pathMatch: 'full',
+  },
+  {
     path: 'operations-rxjs',
     children: [
       {
@@ -273,6 +278,32 @@ export const routes: Routes = [
           import(
             './components/operations-multicasting/share/share.module'
           ).then(m => m.ShareModule),
+      },
+    ],
+  },
+  {
+    path: 'operations-error',
+    children: [
+      {
+        path: 'catch-error',
+        loadChildren: () =>
+          import(
+            './components/operations-error/catch-error/catch-error.module'
+          ).then(m => m.CatchErrorModule),
+      },
+      {
+        path: 'retry',
+        loadChildren: () =>
+          import('./components/operations-error/retry/retry.module').then(
+            m => m.RetryModule
+          ),
+      },
+      {
+        path: 'retry-when',
+        loadChildren: () =>
+          import(
+            './components/operations-error/retry-when/retry-when.module'
+          ).then(m => m.RetryWhenModule),
       },
     ],
   },
