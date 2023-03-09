@@ -264,15 +264,15 @@ export const routes: Routes = [
         path: 'share-replay',
         loadChildren: () =>
           import(
-            './components/operation-multicasting/share-replay/share-replay.module'
+            './components/operations-multicasting/share-replay/share-replay.module'
           ).then(m => m.ShareReplayModule),
       },
       {
         path: 'share',
         loadChildren: () =>
-          import('./components/operation-multicasting/share/share.module').then(
-            m => m.ShareModule
-          ),
+          import(
+            './components/operations-multicasting/share/share.module'
+          ).then(m => m.ShareModule),
       },
     ],
   },
