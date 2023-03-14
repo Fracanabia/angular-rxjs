@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   catchError,
   concat,
+  delay,
   forkJoin,
   interval,
   map,
@@ -13,6 +14,7 @@ import {
   share,
   shareReplay,
   throwError,
+  timeout,
   toArray,
   zip,
 } from 'rxjs';
@@ -157,5 +159,19 @@ export class ApiService {
         }),
         retry(2)
       );
+  }
+
+  public getUserDelay(): Observable<User[]> {
+    return this._httpClient
+      .get<User[]>(`http://localhost:3000/users`)
+      .pipe(delay(5000));
+  }
+
+  public getUserTimeout(): Observable<User[]> {
+    return this._httpClient.get<User[]>(`http://localhost:3000/users`).pipe(
+      delay(5000),
+      timeout(2500),
+      catchError(error => of(`Ocorreu um erro: `, error))
+    );
   }
 }

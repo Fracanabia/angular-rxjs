@@ -44,6 +44,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'operations-utils',
+    redirectTo: 'operations-utils/tap',
+    pathMatch: 'full',
+  },
+  {
     path: 'operations-rxjs',
     children: [
       {
@@ -304,6 +309,32 @@ export const routes: Routes = [
           import(
             './components/operations-error/retry-when/retry-when.module'
           ).then(m => m.RetryWhenModule),
+      },
+    ],
+  },
+  {
+    path: 'operations-utils',
+    children: [
+      {
+        path: 'tap',
+        loadChildren: () =>
+          import('./components/operations-utils/tap/tap.module').then(
+            m => m.TapModule
+          ),
+      },
+      {
+        path: 'delay',
+        loadChildren: () =>
+          import('./components/operations-utils/delay/delay.module').then(
+            m => m.DelayModule
+          ),
+      },
+      {
+        path: 'timeout',
+        loadChildren: () =>
+          import('./components/operations-utils/timeout/timeout.module').then(
+            m => m.TimeoutModule
+          ),
       },
     ],
   },
