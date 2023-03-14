@@ -49,6 +49,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'operations-conditions',
+    redirectTo: 'operations-conditions/every',
+    pathMatch: 'full',
+  },
+  {
     path: 'operations-rxjs',
     children: [
       {
@@ -335,6 +340,39 @@ export const routes: Routes = [
           import('./components/operations-utils/timeout/timeout.module').then(
             m => m.TimeoutModule
           ),
+      },
+    ],
+  },
+  {
+    path: 'operations-conditions',
+    children: [
+      {
+        path: 'every',
+        loadChildren: () =>
+          import('./components/operations-conditions/every/every.module').then(
+            m => m.EveryModule
+          ),
+      },
+      {
+        path: 'find',
+        loadChildren: () =>
+          import('./components/operations-conditions/find/find.module').then(
+            m => m.FindModule
+          ),
+      },
+      {
+        path: 'find-index',
+        loadChildren: () =>
+          import(
+            './components/operations-conditions/find-index/find-index.module'
+          ).then(m => m.FindIndexModule),
+      },
+      {
+        path: 'is-empty',
+        loadChildren: () =>
+          import(
+            './components/operations-conditions/is-empty/is-empty.module'
+          ).then(m => m.IsEmptyModule),
       },
     ],
   },
